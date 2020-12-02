@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Quitar acentos</title>
+	<style type="text/css">
+		body{
+			margin: 0 auto;
+			width: 300px;
+		}
+		h4{
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<input type="text" name="texto">
+		<input type="button" name="boton" value="Dar formato">
+		<h4 name="resultado"></h4>
+	</div>
+
+	<script type="text/javascript">
+
+		document.querySelector('[name="boton"]').addEventListener('click', function(){
+			let textoEditar = document.querySelector('[name="texto"]').value;
+			let editado = darFormato(textoEditar);
+			document.querySelector('[name="resultado"]').innerHTML = editado;
+		});
+		
+		function darFormato(cadena){
+			let aMayus = cadena.replace(/[ÁÀÄÂ]/g,'A');
+            let aMinus = aMayus.replace(/[áàäâ]/g,'a');
+            let eMayus = aMinus.replace(/[ÉÈËÊ]/g,'E');
+            let eMinus = eMayus.replace(/[éèëê]/g,'e');
+            let iMayus = eMinus.replace(/[ÍÌÏÎ]/g,'I');
+            let iMinus = iMayus.replace(/[íìïî]/g,'i');
+            let oMayus = iMinus.replace(/[ÓÒÖÔ]/g,'O');
+            let oMinus = oMayus.replace(/[óòöô]/g,'o');
+            let uMayus = oMinus.replace(/[ÚÙÜÛ]/g,'U');
+            let uMinus = uMayus.replace(/[úùüû]/g,'u');
+            let enieMayus = uMinus.replace(/[Ñ]/g,'N');
+            let enieMinus = enieMayus.replace(/[ñ]/g,'n');
+            let resultado = enieMinus.replace(/['|°¬!^`~"#$%&/()Çç=?¿{}_,.´+<>¡¨*:;]/gi,'');
+
+            return resultado;
+		}
+	</script>
+</body>
+</html>
